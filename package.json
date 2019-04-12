@@ -3,9 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "connected-react-router": "^6.3.2",
+    "create-redux-store": "^1.1.2",
+    "firebase": "^5.8.4",
+    "google-maps-react": "^2.0.2",
     "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "react-scripts": "2.1.5"
+    "react-dom": "^16.8.4",
+    "react-firebaseui": "^3.1.2",
+    "react-redux": "^5.1.1",
+    "react-redux-firebase": "^2.2.1",
+    "react-router-dom": "^4.4.0-beta.7",
+    "react-scripts": "2.1.5",
+    "redux": "^4.0.1",
+    "redux-firestore": "^0.6.4",
+    "redux-form": "^8.1.0",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

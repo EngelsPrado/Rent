@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: 'Inconsolata', monospace;
 }
 
 .App-logo {
@@ -7,6 +8,8 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+
 
 .App-header {
   background-color: #282c34;
