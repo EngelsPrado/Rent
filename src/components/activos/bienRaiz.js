@@ -33,7 +33,7 @@ class BienRaiz extends Component {
   renderA()
   {
     const db=firebase.firestore()
-    db.collection("anuncios").doc("categorias").collection("bienRaiz").get().then(querySnapshot=>{
+    db.collection("anuncios").where("tipoAnuncio","==","bienRaiz").get().then(querySnapshot=>{
            this.setState({
              a:querySnapshot
            })

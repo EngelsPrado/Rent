@@ -19,7 +19,7 @@ class Header extends Component {
                  
                <nav className="d-flex navbar">
                  <div className="dropdown align-self-center">
-                    <button className="btn btn-warning dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button className="btn btn-info dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Menu
                     </button>
                     <div className ="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -34,9 +34,11 @@ class Header extends Component {
                 
                  </a>    
  
-                  {link}
+                  <div className="d-flex flex-row">
+                     {link}
 
-                 <NavLink  to="/publicar"  className=" btn btn-warning text-white"> + Publica</NavLink> 
+                    <NavLink  to="/publicar"  className=" btn btn-light text-black p-3 ml-2"> + Publica</NavLink> 
+                  </div>
                    
                 </nav>
                      

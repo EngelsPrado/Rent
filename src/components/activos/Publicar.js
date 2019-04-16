@@ -5,11 +5,13 @@ import IniciaSesion from '../IniciaSesion';
 import './../style.css'
 import firebase from 'firebase'
 import {createAnuncio} from './../../store/actions/anuncioAction'
+
+
 class Publicar extends Component {
 
     //handleBack=()=>{ this.props.history.goBack() }
     handleSubmit=(value)=>{
-        console.log(value.photo)
+        console.log(value)
          
          const storageRef = firebase.storage().ref();
          const mountainsRef = storageRef.child(`Anuncios/${value.photo[0].name}`);
@@ -40,7 +42,7 @@ class Publicar extends Component {
     render() {
 
         const { auth } = this.props;
-
+        
         const aviso= auth.uid ? <CreateBus 
         onSubmitSuccess={this.handleOnSubmitSuccess}
         onSubmit={this.handleSubmit}

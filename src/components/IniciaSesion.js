@@ -16,11 +16,11 @@ class IniciaSesion extends Component {
           this.setState({
             isSignedIn:!!user,
          })
-         console.log(user.providerData.uid)
+     
          if(user )
          {
           const db=getFirestore(); 
-          const userRef=db.collection("user").doc(user.uid) 
+          const userRef=db.collection("user").doc(user.uid).collection("datos") 
           
           userRef.set({
              name: user.displayName,

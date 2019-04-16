@@ -1,14 +1,17 @@
+const uuidv4 = require('uuid/v4');
+
 export const createAnuncio = (anuncio,url) => {
 
     return (dispatch, getState, {getFirestore},state) => {
       const firestore = getFirestore();
       const profile = getState().firebase.auth;
       const authorId = getState().firebase.auth.uid;
+      const id=uuidv4();
+      console.log(anuncio)
 
-      console.log(url)
-
-      firestore.collection('anuncios').doc("categorias").collection(`${anuncio.clasificacion}`).add({
+      firestore.collection('anuncios').doc(id).set({
         user:profile.displayName,
+        id,
         email:profile.email,
         authorId,
         titulo:anuncio.titulo,

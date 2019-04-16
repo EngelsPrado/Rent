@@ -30,7 +30,7 @@ class Coches extends Component {
   renderA()
   {
     const db=firebase.firestore()
-    db.collection("anuncios").doc("categorias").collection("auto").get().then(querySnapshot=>{
+    db.collection("anuncios").where("tipoAnuncio","==","auto").get().then(querySnapshot=>{
            this.setState({
              a:querySnapshot
            })
