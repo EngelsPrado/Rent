@@ -5,7 +5,7 @@ import IniciaSesion from '../IniciaSesion';
 import './../style.css'
 import firebase from 'firebase'
 import {createAnuncio} from './../../store/actions/anuncioAction'
-
+const uuidv4 = require('uuid/v4');
 
 class Publicar extends Component {
 
@@ -14,7 +14,7 @@ class Publicar extends Component {
         console.log(value)
          
          const storageRef = firebase.storage().ref();
-         const mountainsRef = storageRef.child(`Anuncios/${value.photo[0].name}`);
+         const mountainsRef = storageRef.child(`Anuncios/${value.photo[0].name}-${uuidv4()}`);
        
          const uploadTask= mountainsRef.put(value.photo[0])
         

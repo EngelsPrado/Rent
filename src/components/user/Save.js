@@ -39,14 +39,14 @@ class Save extends Component {
                        datos
                    ]
               }))
-            })  
+            }).catch(err=>{console.log("No hay anuncios guardados")})  
 
 
           })
 
           
       
-          })
+          }).catch(err=>{console.log("No hay anuncios guardados")})
        
       }
 

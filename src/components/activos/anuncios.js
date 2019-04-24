@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { Redirect,Link } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import ListAnuncios from './listAnuncios';
 import './style.css'
 import BienRaiz from './bienRaiz';
 import Coches from './coches';
