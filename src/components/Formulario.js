@@ -82,7 +82,7 @@ class CreateBus extends Component {
   )
 
      handleChange=(event)=> {
-      const photo=event.target.files[0]
+      const photo=event.target.files
       this.setState=({
         value:photo
       })

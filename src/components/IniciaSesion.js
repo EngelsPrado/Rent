@@ -66,15 +66,15 @@ class IniciaSesion extends Component {
    
         if (auth.uid || this.state.isSignedIn) return <Redirect to='/' /> 
         return (
-            <div className="dashboard container mt-5">
-                <button type="button" class="btn btn-primary p-3" data-toggle="modal" data-target="#exampleModalCenter">
+            <div className="dashboard container mt-3">
+                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalCenter">
                   Inicia Sesion!
                 </button>
 
 
-          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
+              <div class="modal-content ">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalCenterTitle">Elige una opcion</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">

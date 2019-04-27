@@ -5,3 +5,7 @@ margin: 5px;
 .publica{
     margin-top: 100px;
 }
+
+.modal-backdrop{
+    z-index: 0;
+}

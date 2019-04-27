@@ -7,11 +7,12 @@ import firebase from 'firebase'
 import {createAnuncio} from './../../store/actions/anuncioAction'
 const uuidv4 = require('uuid/v4');
 
+//Guardar varias fotos
 class Publicar extends Component {
 
     //handleBack=()=>{ this.props.history.goBack() }
     handleSubmit=(value)=>{
-        console.log(value)
+        
          
          const storageRef = firebase.storage().ref();
          const mountainsRef = storageRef.child(`Anuncios/${value.photo[0].name}-${uuidv4()}`);
@@ -34,7 +35,7 @@ class Publicar extends Component {
                    });
                    })
                    
-        console.log(`${this.urls}`)
+      
         const getURL=(url)=>this.props.createAnuncio(value,url)   
         this.props.history.push(`/anuncios/${value.clasificacion}`);
     }

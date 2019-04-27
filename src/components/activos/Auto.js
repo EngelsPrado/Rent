@@ -99,8 +99,10 @@ class Auto extends Component {
 
               <div class={`card ${this.state.card}`}>
                 <div className="d-flex justify-content-between">
-                <span className="align-self-start border-bottom p-2"><i class="fas fa-minus-circle"></i></span>
-                <span className="align-self-end border-bottom p-2"><i class="far fa-save"/></span>
+                <button type="button" className={this.state.btn} onClick={this.borrar}><span className="align-self-start border-bottom "><i class="fas fa-minus-circle"></i></span></button>
+                
+                <button type="button" className={this.state.className} onClick={this.guardar}><span className="align-self-end border-bottom"><i class="far fa-save"/></span></button>
+                
                 </div>
                 <img class="card-img-top" src={auto.urlPhoto} alt="Card image cap"/>
                 <div class="card-body">
@@ -110,8 +112,8 @@ class Auto extends Component {
                     <a href="#" class="btn btn-primary">Ver mas detalles</a>
                     
 
-                    <button type="button" className={this.state.className} onClick={this.guardar}>Guardar</button>
-                    <button type="button" className={this.state.btn} onClick={this.borrar}>Borrar</button>
+                    {/* <button type="button" className={this.state.className} onClick={this.guardar}>Guardar</button> */}
+                    {/* <button type="button" className={this.state.btn} onClick={this.borrar}>Borrar</button> */}
                     </div>
                 </div>
               </div>

@@ -4,13 +4,14 @@ import { getFirestore } from 'redux-firestore';
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import SignedInLinks from './../layout/signedInLink'
+import IniciaSesion from './IniciaSesion';
 
 class Header extends Component {
     render() {
 
         const { auth } = this.props;
 
-        const link=auth.uid ? <SignedInLinks profile={auth} ></SignedInLinks> : null 
+        const link=auth.uid ? <SignedInLinks profile={auth} ></SignedInLinks> : <IniciaSesion></IniciaSesion>
 
         return (
             <div className="bg-light sticky-top nav">
@@ -35,7 +36,9 @@ class Header extends Component {
                  </a>    
  
                   <div className="d-flex flex-row">
-                     {link}
+                     <div>
+                       {link}
+                     </div>
 
                     <NavLink  to="/publicar"  className=" btn btn-light text-black p-3 ml-2"> + Publica</NavLink> 
                   </div>

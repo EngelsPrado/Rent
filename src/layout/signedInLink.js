@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { signOut } from './../store/actions/authAction'
 
 const SignedInLinks = (props) => {
-  console.log(props.profile.providerData[0])
+
   return (
     <div className="d-flex flex-row">
      
