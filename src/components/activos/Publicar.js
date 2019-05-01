@@ -5,45 +5,45 @@ import IniciaSesion from '../IniciaSesion';
 import './../style.css'
 import firebase from 'firebase'
 import {createAnuncio} from './../../store/actions/anuncioAction'
+import {createUrl} from './../../store/actions/fotoAction'
 const uuidv4 = require('uuid/v4');
 
 //Guardar varias fotos
 class Publicar extends Component {
-
-    //handleBack=()=>{ this.props.history.goBack() }
+   
+   
+   state={
+     array:[]
+   }
+      
+  //  }ndleBack=()=>{ this.props.history.goBack() }
     handleSubmit=(value)=>{
         
          
          const storageRef = firebase.storage().ref();
-         const mountainsRef = storageRef.child(`Anuncios/${value.photo[0].name}-${uuidv4()}`);
-       
-         const uploadTask= mountainsRef.put(value.photo[0])
+         console.log(value.photo);
+          
+         const array=value.photo;
+         var uploadTask=[];
         
-       uploadTask.on('state_changed', function(snapshot){
-            //        Observe state change events such as progress, pause, and resume
-            //        Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                 
-                 }, function(error) {
-                   // Handle unsuccessful uploads
-                  }, function() {
-                   // Handle successful uploads on complete
-            //       // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                   uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                     console.log('File available at', downloadURL);
-                       getURL(downloadURL);
-                      // var urls=downloadURL;             
-                   });
-                   })
-                   
-      
-        const getURL=(url)=>this.props.createAnuncio(value,url)   
-        this.props.history.push(`/anuncios/${value.clasificacion}`);
+         const id=uuidv4();
+         console.log(id)
+         for (var i = 0; i < array.length; i++) {
+         
+          const mountainsRef = storageRef.child(`Anuncios/${this.props.auth.uid}/${array[i].name}-${uuidv4()}`);
+           uploadTask= [...uploadTask,mountainsRef.put(array[i])]
+         
+         }
+           this.props.createUrl(uploadTask,id)
+           console.log(id)                  
+           this.props.createAnuncio(value,id)   
+         //  this.props.history.push(`/anuncios/${value.clasificacion}`);
     }
 
     render() {
 
-        const { auth } = this.props;
-        
+        const { auth,url} = this.props;
+        console.log(url)
         const aviso= auth.uid ? <CreateBus 
         onSubmitSuccess={this.handleOnSubmitSuccess}
         onSubmit={this.handleSubmit}
@@ -62,13 +62,15 @@ class Publicar extends Component {
 const mapStateToProps = (state) => {
     return{
      // authError: state.auth.authError,
-      auth: state.firebase.auth
+      auth: state.firebase.auth,
+      url:state.urlReducer
     }
   }
 
   const mapDispatchToProps = dispatch => {
     return {
-      createAnuncio: (value,url) => dispatch(createAnuncio(value,url))
+      createAnuncio: (value,id) => dispatch(createAnuncio(value,id)),
+      createUrl:(urlF,id)=> dispatch(createUrl(urlF,id)) 
     }
   }
 

@@ -1,13 +1,12 @@
-const uuidv4 = require('uuid/v4');
 
-export const createAnuncio = (anuncio,url) => {
+
+export const createAnuncio = (anuncio,id) => {
 
     return (dispatch, getState, {getFirestore},state) => {
       const firestore = getFirestore();
       const profile = getState().firebase.auth;
       const authorId = getState().firebase.auth.uid;
-      const id=uuidv4();
-      console.log(anuncio)
+      console.log(id)
 
       firestore.collection('anuncios').doc(id).set({
         user:profile.displayName,
@@ -22,7 +21,10 @@ export const createAnuncio = (anuncio,url) => {
         departamento:anuncio.departamento,
         estado:false,
         createdAt: new Date(),
-        urlPhoto:url //url.toString()
+       // f1,
+      //  f2,
+       // f3
+        //urlPhoto:JSON.stringify(urlFotos) //url.toString()
       }).then(() => {
         dispatch({ type: 'CREATE_ANUNCIO_SUCCESS' });
       }).catch(err => {

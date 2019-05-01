@@ -5,10 +5,9 @@ import { Redirect,Link } from 'react-router-dom'
 import { compose } from 'redux'
 import './style.css'
 import Auto from './Auto';
-
 import firebase from 'firebase'
 import { Field, reduxForm } from 'redux-form'
-import coches from './coches';
+
 
 //Controlar los limits cuando el usuario le da click en mostrar mas anuncios
 
@@ -41,7 +40,7 @@ class BienRaiz extends Component {
           .startAfter(this.state.lastVisible)
           .limit(3).where("tipoAnuncio","==","bienRaiz").get().then(documentSnapshots=>{
             var lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
-            console.log(lastVisible.data())          
+                  
 
             this.setState(prevState => ({
               a: [

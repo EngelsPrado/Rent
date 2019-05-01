@@ -10,12 +10,29 @@ class Auto extends Component {
     
   state={
     className:'btn btn-info',
-    btn:'btn btn-warning invisible'
+    btn:'btn btn-warning invisible',
+    fotos:[],
+    id:`carouselExampleControl${this.props.auto.id}`
   }
   //Pendiendte
   componentDidMount()
   {
-    const db=firebase.firestore() 
+
+    
+
+    const db=firebase.firestore()
+    
+    db.collection("urlFotos").doc(this.props.auto.id).get().then(url=>{
+      var datos=url.data()
+      console.log(datos)
+  
+     this.setState({
+       fotos:datos
+     })
+     console.log(this.state.fotos.urlPhoto[0])
+    })
+
+
     if(this.props.auth.uid==this.props.auto.authorId)//Mis anuncios no tendran opcion de guardar
     {
       this.setState({
@@ -93,7 +110,7 @@ class Auto extends Component {
     
     render() {
         const {auto}=this.props;
-     
+        console.log(auto)
         return (
             <div className="ml-5 col-3" >
 
@@ -104,7 +121,32 @@ class Auto extends Component {
                 <button type="button" className={this.state.className} onClick={this.guardar}><span className="align-self-end border-bottom"><i class="far fa-save"/></span></button>
                 
                 </div>
-                <img class="card-img-top" src={auto.urlPhoto} alt="Card image cap"/>
+                {/*  */}
+                <div id={this.state.id} class="carousel slide carousel-fade" data-ride="carousel">
+                  <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img class="d-block w-100" src={this.state.fotos.urlPhoto? this.state.fotos.urlPhoto[0]:null} alt="First slide"/>
+                      </div>
+                      <div class="carousel-item">
+                        <img class="d-block w-100" src={this.state.fotos.urlPhoto? this.state.fotos.urlPhoto[1]:null} alt="Second slide"/>
+                      </div>
+                      <div class="carousel-item">
+                        <img class="d-block w-100" src={this.state.fotos.urlPhoto? this.state.fotos.urlPhoto[2]:null} alt="Third slide"/>
+                      </div>
+                  </div>
+                    <a class="carousel-control-prev" href={`#${this.state.id}`}role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href={`#${this.state.id}`} role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                </div>      
+
+
+                {/*  */}
+                {/* <img class="card-img-top" src={ this.state.fotos.urlPhoto? this.state.fotos.urlPhoto[0]:null} alt="Card image cap"/> */}
                 <div class="card-body">
                     <h5 class="card-title">{auto.titulo}</h5>
                     <p class="card-text">{auto.descripcion}</p>

@@ -1,6 +1,7 @@
 const initState = {}
 
 const anuncioReducer = (state = initState, action) => {
+ 
   switch (action.type) {
     case 'CREATE_ANUNCIO_SUCCESS':
       console.log('create negocio success');
