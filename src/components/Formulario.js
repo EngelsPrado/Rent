@@ -49,7 +49,7 @@ class CreateBus extends Component {
     type,
     meta: { touched, error, warning }
   }) => (
-    <div className="col-6">
+    <div className="col-6 col-sm-6">
       <label >< h4 className=" ">{label}</h4></label>
       <div className="form-group">
         <input className="form-control" {...input}
@@ -101,13 +101,14 @@ class CreateBus extends Component {
                     name="titulo"
                     type="text"
                     component={this.renderField}
-                    label="Titulo del anuncio"
+                    label="Titulo"
                     validate={[required, maxLength50, minLength2]}
                     warn={alphaNumeric}
+                   
                   />
                   
                   
-                  <div className="col-4 mt-2">
+                  <div className="col-6 mt-2 col-sm-6">
                   <h4 className="d-block">Categoria</h4>  
                   <Field
                     name="clasificacion"
@@ -125,7 +126,7 @@ class CreateBus extends Component {
                   </Field>   
                     
                   </div> 
-                  <div className="col-6 mt-2">
+                  <div className="col-6 mt-2 col-sm-6">
                   <h4 className="d-block">Departamento</h4>  
                   <Field
                     name="departamento"
@@ -144,7 +145,7 @@ class CreateBus extends Component {
                     
                     
                   </div>
-                  <div className="col-4 mt-2" >
+                  <div className="col-6 mt-2 col-sm-6" >
                   <h4 className="d-block">Direccion</h4> 
                   <Field
                     className="form-control " rows="2"
@@ -170,7 +171,7 @@ class CreateBus extends Component {
 
                   </div>
 
-                 <div className="col-4 mt-2">
+                 <div className="col-6 mt-2 col-sm-6">
                  <h4>Descripcion</h4>
                  <Field className="form-control " rows="2"
                     name="descripcion"

@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 class Categorias extends Component {
     render() {
         return (
-            <div className="d-flex container flex-row justify-content-center">
+            <div className="row d-flex container flex-row justify-content-center">
                  <div class="card " >
                     <img class="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/rent-me-165ca.appspot.com/o/Fotos%20del%20proyecto%2Fcasa.png?alt=media&token=c9d9934a-3281-430e-9059-da94042c4dfa" alt="Card image cap"/>
                     <div class="card-body">

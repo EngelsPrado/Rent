@@ -25,7 +25,7 @@ class Save extends Component {
       renderA()
       {
         const db=firebase.firestore()
-        db.collection("user").doc(this.props.auth.uid).collection("guardados").get().then(querySnapshot=>{
+        db.collection("user").doc(this.props.auth.uid).collection("guardados").where("estado","==",true).get().then(querySnapshot=>{
           const query=querySnapshot.docs
          
           query && query.map(snap=>{

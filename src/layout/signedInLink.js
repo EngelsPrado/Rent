@@ -12,7 +12,7 @@ const SignedInLinks = (props) => {
         
         <div className="dropdown right self-align-center" >
            
-           <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   
                <img  width='45'  src={props.profile.photoURL}></img>
  

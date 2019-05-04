@@ -73,7 +73,7 @@ class BienRaiz extends Component {
       }))
            
   
-      })
+      }).catch(err=>console.log(err))
 
   }
  

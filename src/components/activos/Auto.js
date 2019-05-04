@@ -18,7 +18,6 @@ class Auto extends Component {
   componentDidMount()
   {
 
-    
 
     const db=firebase.firestore()
     
@@ -29,10 +28,24 @@ class Auto extends Component {
      this.setState({
        fotos:datos
      })
-     console.log(this.state.fotos.urlPhoto[0])
+    
     })
+  
+    //Poner la opcion de borrar si el anuncio esta guardado
+    db.collection("user").doc(this.props.auth.uid).collection("guardados").doc(this.props.auto.id).get().then(snap=>{
+      console.log(snap.data())
+         
+      if(snap.data().ID==this.props.auto.id)
+      {
+        this.setState({
+        
+          btn:'btn btn-warning',
+       
+        })  
+      }
 
-
+    }) 
+  
     if(this.props.auth.uid==this.props.auto.authorId)//Mis anuncios no tendran opcion de guardar
     {
       this.setState({
@@ -68,14 +81,26 @@ class Auto extends Component {
     }).then((result) => {
       if (result.value) {
         const db=firebase.firestore() 
-      
-        db.collection("anuncios").doc(this.props.auto.id).delete().then(()=> {
-         this.setState({
-           card:'invisible'
-         })
-      }).catch(function(error) {
-          console.error("Error removing document: ", error);
-      });
+        
+         if(this.props.auth.uid != this.props.auto.authorId)
+         {
+          db.collection("user").doc(this.props.auth.uid).collection("guardados").doc(this.props.auto.id).update({
+            estado:false
+          }).then(()=>{
+            this.setState({
+              card:'invisible'
+            })
+          })
+         }else{
+          db.collection("anuncios").doc(this.props.auto.id).delete().then(()=> {
+            this.setState({
+              card:'invisible'
+            })
+         }).catch(function(error) {
+             console.error("Error removing document: ", error);
+         });
+         }
+        
         Swal.fire(
           'Borrado!',
           'El anuncios ha sido borrado',
@@ -112,7 +137,7 @@ class Auto extends Component {
         const {auto}=this.props;
         console.log(auto)
         return (
-            <div className="ml-5 col-3" >
+            <div className="ml-5 col-sm-12 col-md-6 col-lg-5 col-xl-3 " >
 
               <div class={`card ${this.state.card}`}>
                 <div className="d-flex justify-content-between">
