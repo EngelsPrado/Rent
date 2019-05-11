@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import firebase from 'firebase'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-
+import moment from 'moment'
 const MySwal = withReactContent(Swal)
 
 class Auto extends Component {
@@ -23,7 +23,7 @@ class Auto extends Component {
     
     db.collection("urlFotos").doc(this.props.auto.id).get().then(url=>{
       var datos=url.data()
-      console.log(datos)
+
   
      this.setState({
        fotos:datos
@@ -33,9 +33,9 @@ class Auto extends Component {
   
     //Poner la opcion de borrar si el anuncio esta guardado
     db.collection("user").doc(this.props.auth.uid).collection("guardados").doc(this.props.auto.id).get().then(snap=>{
-      console.log(snap.data())
+  
          
-      if(snap.data().ID==this.props.auto.id)
+      if(snap.data().estado!=false)
       {
         this.setState({
         
@@ -44,7 +44,7 @@ class Auto extends Component {
         })  
       }
 
-    }) 
+    }).catch(err=>{console.log(err)}) 
   
     if(this.props.auth.uid==this.props.auto.authorId)//Mis anuncios no tendran opcion de guardar
     {
@@ -57,8 +57,8 @@ class Auto extends Component {
     //Validamos que el anuncio que guardamos no aparezca su opcion de guardar otra veeeez
     db.collection("user").doc(this.props.auth.uid).collection("guardados").where("ID","==",this.props.auto.id).get().then(snap=>{
       const datos=snap.docs[0].data()
-     
-      if(datos.estado==true)
+       console.log(datos.estado)
+      if(datos.estado && datos.estado==true)
       {
         this.setState({
           className:'invisible'
@@ -135,9 +135,9 @@ class Auto extends Component {
     
     render() {
         const {auto}=this.props;
-        console.log(auto)
+    
         return (
-            <div className="ml-5 col-sm-12 col-md-6 col-lg-5 col-xl-3 " >
+            <div className="ml-5 ml-sm-5 ml-md-5 ml-lg-5 col-sm-12 col-md-5 col-lg-5 col-xl-3 " >
 
               <div class={`card ${this.state.card}`}>
                 <div className="d-flex justify-content-between">
@@ -174,14 +174,14 @@ class Auto extends Component {
                 {/* <img class="card-img-top" src={ this.state.fotos.urlPhoto? this.state.fotos.urlPhoto[0]:null} alt="Card image cap"/> */}
                 <div class="card-body">
                     <h5 class="card-title">{auto.titulo}</h5>
-                    <p class="card-text">{auto.descripcion}</p>
+                    <p class="card-text">{auto.departamento}</p>
                     <div>
                     <a href="#" class="btn btn-primary">Ver mas detalles</a>
                     
-
                     {/* <button type="button" className={this.state.className} onClick={this.guardar}>Guardar</button> */}
                     {/* <button type="button" className={this.state.btn} onClick={this.borrar}>Borrar</button> */}
                     </div>
+                    <h6 className="mt-3">Publicado hace:{moment(auto.createdAt.toDate()).fromNow() }</h6>
                 </div>
               </div>
   
@@ -196,4 +196,5 @@ const mapStateToProps = (state) => {
     auth: state.firebase.auth
   }
 }
+
 export default connect(mapStateToProps) (Auto); 

@@ -8,6 +8,7 @@ import './style.css'
 import BienRaiz from './bienRaiz';
 import Coches from './coches';
 import { BrowserRouter, Switch, Route,withRouter } from 'react-router-dom'
+import Nav from './Nav';
 
 class Anuncios extends Component {
 
@@ -53,6 +54,8 @@ class Anuncios extends Component {
         
         return (
             <div className="container-fluid">
+              <Nav></Nav>   
+
                {this.renderBody(dni)}
             </div>
         );

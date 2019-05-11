@@ -8,7 +8,7 @@ import Auto from './Auto';
 import firebase from 'firebase'
 import { Field, reduxForm } from 'redux-form'
 
-
+//Validar que un usuario no identificado no vea los botones guardar y eliminar
 //Controlar los limits cuando el usuario le da click en mostrar mas anuncios
 
 class BienRaiz extends Component {
@@ -20,7 +20,8 @@ class BienRaiz extends Component {
       lastVisible:null,
       err:'invisible',
       btn:'visible',
-      redirect:false
+      redirect:false,
+      categoria:null,
     }
 
     this.renderA = this.renderA.bind(this);
@@ -35,20 +36,25 @@ class BienRaiz extends Component {
   {
     
     const db=firebase.firestore()
-
+    //Mejorar 
     db.collection("anuncios")
           .startAfter(this.state.lastVisible)
           .limit(3).where("tipoAnuncio","==","bienRaiz").get().then(documentSnapshots=>{
             var lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
-                  
+            
+            if(lastVisible)
+            {
+              this.setState(prevState => ({
+                a: [
+                    ...prevState.a,
+                    documentSnapshots
+                   ],
+                   lastVisible
+              }))
+            }else{
+              this.setState({err:'visible',btn:'invisible' })  
+            }
 
-            this.setState(prevState => ({
-              a: [
-                  ...prevState.a,
-                  documentSnapshots
-                 ],
-                 lastVisible
-            }))
           }).catch(err=>{ this.setState({err:'visible',btn:'invisible' })   }); 
   } 
   //Trae los anuncios al front
@@ -60,7 +66,7 @@ class BienRaiz extends Component {
   renderA()
   {
     const db=firebase.firestore()
-
+    //Mejorar
     db.collection("anuncios").limit(3).where("tipoAnuncio","==","bienRaiz").get().then(querySnapshot=>{
       var lastVisible = querySnapshot.docs[querySnapshot.docs.length-1];
        console.log("last", lastVisible.data());
@@ -78,16 +84,17 @@ class BienRaiz extends Component {
   }
  
   handleSubmit(values){
-    console.log(values)
+ 
     setTimeout(this.setState({
       err:'invisible',
       btn:'visible',
+      categoria:values.categoria
     }),500)
-
+     
     const db=firebase.firestore()
-    if(values.categoria && values.departamento)
+    if( values.departamento)
     {
-      db.collection("anuncios").limit(3).where("tipoAnuncio","==",values.categoria).where("departamento","==",values.departamento).get().then(querySnapshot=>{
+      db.collection("anuncios").limit(3).where("tipoAnuncio","==","bienRaiz").where("departamento","==",values.departamento).get().then(querySnapshot=>{
         var lastVisible = querySnapshot.docs[querySnapshot.docs.length-1];
          console.log("last", lastVisible.data());
          this.setState(prevState => ({
@@ -125,40 +132,20 @@ class BienRaiz extends Component {
   
   
         return (
-            <div className="row">
-                <div className="col-2 bg-light one">
-                <h4>Filtrar busqueda por:</h4>
-                {/* <div class="btn-group d-flex flex-column" role="group" aria-label="Basic example">
-       
-                <Link to="/anuncios/auto" class="btn btn-primary mt-3">Autos </Link>
-                <Link to="/anuncios/bienRaiz" class="btn btn-primary mt-3">Bienes raices</Link>
-                <Link to="/anuncios/ocio" class="btn btn-primary mt-3">Ocio</Link>
-
-                </div> */}
-                <form onSubmit={handleSubmit(this.handleSubmit)}>
-                <h4 className="d-block mt-3">Categoria</h4>  
-                <Field
-                    name="categoria"
-                    type="text"
-                    component="select"
-                    label="Categoria"
-                    //validate={[required]}
-                    className="form-control"
-                  > 
-                   <option> </option>
-                   <option value="bienRaiz">Bienes Raices</option>
-                   <option value="auto">Autos</option>
-                   <option value="ocio">Ocio</option>
-                   
-                  </Field>   
-                  <h4 className="d-block mt-4">Ubicacion</h4>  
+            <div className="row d-flex flex-sm-column flex-md-row flex-lg-row">
+                <div className="col-sm-12 col-lg-2 bg-light one">
+                <h4>Busqueda por:</h4>
+                <h5>Departamento</h5>
+                <form onSubmit={handleSubmit(this.handleSubmit)} className="d-flex row flex-sm-row flex-lg-column">
+          
+            
                   <Field
                     name="departamento"
                     type="text"
                     component="select"
                     label="Ubicacion"
                     //validate={[required]}
-                    className="form-control"
+                    className="form-control col-3 col-sm-3 col-md-3 col-lg-7 ml-5"
                   > 
                    <option> </option>
                    <option value="managua">Managua</option>
@@ -166,25 +153,24 @@ class BienRaiz extends Component {
                    <option value="masaya">Masaya</option>
                    
                   </Field>  
-                  <button type="submit"  class="btn btn-primary mt-4">Buscar</button>
+                  <button type="submit"  class="btn btn-primary ml-sm-3 mt-0 ml-3 mt-sm-0 mt-lg-5">Buscar</button>
                 </form>
                 
                 </div>
-                <div className="col-9 bg-light">
+                <div className="col-sm-12 col-md-12 col-lg-10 bg-light mt-md-5 mt-sm-5 mt-lg-0">
                 
                 
                  <div className="row"> 
                     {
                       array && array.map(querySnapshot=>{
                         return querySnapshot && querySnapshot.docs.map(doc=>{
-                          console.log(doc.data()) ;
+                       
                         return <Auto auto={doc.data()} key={doc.id} />
                     
                       })
 
                       }) 
 
-                      
                     }
                   
                  </div>
