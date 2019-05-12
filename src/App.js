@@ -7,8 +7,6 @@ import Publicar from './components/activos/Publicar';
 import Anuncios from './components/activos/anuncios';
 import  MapContainer  from './components/activos/mapas';
 import Perfil from './components/user/Perfil';
-import MisAnuncios from './components/user/MisAnuncios';
-import firebase from 'firebase'
 import PerfilLink from './components/user/PerfilLink';
 
 class App extends Component {
