@@ -6,9 +6,11 @@ import './../style.css'
 import firebase from 'firebase'
 import {createAnuncio} from './../../store/actions/anuncioAction'
 import {createUrl} from './../../store/actions/fotoAction'
+
 const uuidv4 = require('uuid/v4');
 
 //Guardar varias fotos
+
 class Publicar extends Component {
    
    
@@ -16,12 +18,14 @@ class Publicar extends Component {
      array:[]
    }
       
-  //  }ndleBack=()=>{ this.props.history.goBack() }
+    handleBack=()=>{ this.props.history.goBack() }
+    handleOnSubmitSuccess = () => {
+      this.props.history.goBack();
+  }
     handleSubmit=(value)=>{
         
          
          const storageRef = firebase.storage().ref();
-         console.log(value.photo);
           
          const array=value.photo;
          var uploadTask=[];
@@ -34,16 +38,15 @@ class Publicar extends Component {
            uploadTask= [...uploadTask,mountainsRef.put(array[i])]
          
          }
-           this.props.createUrl(uploadTask,id)
-           console.log(id)                  
+           this.props.createUrl(uploadTask,id)               
            this.props.createAnuncio(value,id)   
-         //  this.props.history.push(`/anuncios/${value.clasificacion}`);
+          
+           
     }
 
     render() {
 
         const { auth,url} = this.props;
-        console.log(url)
         const aviso= auth.uid ? <CreateBus 
         onSubmitSuccess={this.handleOnSubmitSuccess}
         onSubmit={this.handleSubmit}

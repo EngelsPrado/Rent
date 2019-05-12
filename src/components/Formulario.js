@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-
+import { Prompt } from 'react-router-dom';
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required')
 const maxLength = max => value =>
@@ -89,7 +89,7 @@ class CreateBus extends Component {
       })
     }    
     render() {
-      const {submitting,handleSubmit,pristine,reset}=this.props
+      const {submitting,handleSubmit,pristine,reset,submitSucceeded}=this.props
         
         return (
            
@@ -198,6 +198,9 @@ class CreateBus extends Component {
                   <button className="btn btn-outline-secondary"  type="button" disabled={pristine || submitting} onClick={reset}>
                     Clear Values
                   </button>
+                  <Prompt
+                        when={!pristine && !submitSucceeded}
+                        message="Se perderán los datos si continúa"></Prompt>
                 </div>
     </form>
   

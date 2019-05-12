@@ -9,6 +9,7 @@ import  MapContainer  from './components/activos/mapas';
 import Perfil from './components/user/Perfil';
 import MisAnuncios from './components/user/MisAnuncios';
 import firebase from 'firebase'
+import PerfilLink from './components/user/PerfilLink';
 
 class App extends Component {
   render() {
@@ -23,8 +24,8 @@ class App extends Component {
              <Route path='/publicar' component={Publicar} />
             
              <Switch>
-               <Route path='/perfil' component={Perfil}/> 
-               <Route  path='/perfil/:dni' render={props=> <MisAnuncios dni={props.match.params.dni}/> }/>
+               <Route exact path='/perfil' component={Perfil}/> 
+               <Route  path='/perfil/:dni' render={props=>  <PerfilLink dni={props.match.params.dni}/> }/>
             
              </Switch>
             <Switch> 

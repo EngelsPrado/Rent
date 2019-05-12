@@ -32,6 +32,7 @@ class BienRaiz extends Component {
     
   }
    //Funcion para mostrar mas anuncios 
+   // Tener en cuenta el filtro de busqueda
   more()
   {
     

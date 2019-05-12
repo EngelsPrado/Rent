@@ -4,6 +4,7 @@ import firebase from 'firebase'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import moment from 'moment'
+import { Redirect,Link } from 'react-router-dom'
 const MySwal = withReactContent(Swal)
 
 class Auto extends Component {
@@ -12,7 +13,9 @@ class Auto extends Component {
     className:'btn btn-info',
     btn:'btn btn-warning invisible',
     fotos:[],
-    id:`carouselExampleControl${this.props.auto.id}`
+    id:`carouselExampleControl${this.props.auto.id}`,
+    modal:`exampleModalCenter${this.props.auto.id}`,
+  
   }
   //Pendiendte
   componentDidMount()
@@ -35,7 +38,7 @@ class Auto extends Component {
     db.collection("user").doc(this.props.auth.uid).collection("guardados").doc(this.props.auto.id).get().then(snap=>{
   
          
-      if(snap.data().estado!=false)
+      if(snap.data().estado!==false)
       {
         this.setState({
         
@@ -46,7 +49,7 @@ class Auto extends Component {
 
     }).catch(err=>{console.log(err)}) 
   
-    if(this.props.auth.uid==this.props.auto.authorId)//Mis anuncios no tendran opcion de guardar
+    if(this.props.auth.uid===this.props.auto.authorId)//Mis anuncios no tendran opcion de guardar
     {
       this.setState({
         className:'invisible',
@@ -58,7 +61,7 @@ class Auto extends Component {
     db.collection("user").doc(this.props.auth.uid).collection("guardados").where("ID","==",this.props.auto.id).get().then(snap=>{
       const datos=snap.docs[0].data()
        console.log(datos.estado)
-      if(datos.estado && datos.estado==true)
+      if(datos.estado && datos.estado===true)
       {
         this.setState({
           className:'invisible'
@@ -66,7 +69,8 @@ class Auto extends Component {
       }
     }).catch(err=>{console.log(err)})
   }   
-  
+ 
+
   borrar=()=>
   {
     
@@ -82,7 +86,7 @@ class Auto extends Component {
       if (result.value) {
         const db=firebase.firestore() 
         
-         if(this.props.auth.uid != this.props.auto.authorId)
+         if(this.props.auth.uid !== this.props.auto.authorId)
          {
           db.collection("user").doc(this.props.auth.uid).collection("guardados").doc(this.props.auto.id).update({
             estado:false
@@ -176,13 +180,60 @@ class Auto extends Component {
                     <h5 class="card-title">{auto.titulo}</h5>
                     <p class="card-text">{auto.departamento}</p>
                     <div>
-                    <a href="#" class="btn btn-primary">Ver mas detalles</a>
-                    
+                    {/* <a href="#" class="btn btn-primary">Ver mas detalles</a> */}
+                    {/*  */}
+                
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target={`#${this.state.modal}`}>
+                      Mas detalles
+                    </button>
+
+                 
+                    <div class="modal fade" id={this.state.modal} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id={`${this.state.modal}`}>Informacion del anuncio</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body row">
+                             <div className="col-5">
+                             <h6>Descripcion</h6>  
+                             {auto.descripcion}   
+                                       
+                             </div>
+                             <div className="col-5">
+                             <h6>Direccion</h6>  
+                               {auto.direccion}
+                             </div>
+                             <div className="col-3 mt-1">
+                             <h6>Telefono</h6>  
+                               {auto.telefono}
+                             </div>
+                          </div>
+                          <div class="modal-footer d-flex justify-content-between">
+                            <h6>Anunciante:
+                                <Link  className="tooltip-test" to={`/perfil/${this.props.auto.authorId}`}  title="Ver mas de sus anuncios" >{auto.user}</Link>
+                            </h6>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
                     {/* <button type="button" className={this.state.className} onClick={this.guardar}>Guardar</button> */}
                     {/* <button type="button" className={this.state.btn} onClick={this.borrar}>Borrar</button> */}
                     </div>
-                    <h6 className="mt-3">Publicado hace:{moment(auto.createdAt.toDate()).fromNow() }</h6>
+                    <div class="card-footer">
+                      <small class="text-muted">publicado hace:{moment(auto.createdAt.toDate()).fromNow() }</small>
+                    </div>
+                  
                 </div>
+
+                
               </div>
   
             </div>
