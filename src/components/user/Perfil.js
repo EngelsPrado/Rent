@@ -7,6 +7,7 @@ import MisAnuncios from './MisAnuncios';
 import MyAnuncios from './MyAnuncios';
 import Modal from './Modal';
 import Save from './Save';
+import Nav from '../activos/Nav';
 class Perfil extends Component {
 
    state={
@@ -21,23 +22,7 @@ class Perfil extends Component {
     })    
 
   } 
-  renderCustomerControl=()=>
-  {
-      
-        //Valida cual de los path es el que entro el usuario
-       if(this.state.click1)
-         return  <MyAnuncios></MyAnuncios>     
-        else
-            if(this.state.click2)
-              return <Save></Save>     
-            else
-                return  <Modal></Modal>       
-       
-      //  console.log(CustomerControl)
-      //  return <CustomerControl//Le enviamos todas las propiedad
-      //  />   
-  
-  } 
+
   
   renderSave=()=>
   {
@@ -56,31 +41,24 @@ class Perfil extends Component {
         if (!auth.uid) return <Redirect to='/' /> 
         return (
             <div>
-              <div className="container-fluid">
+              <div className="container-fluid ">
                 
                 <div className="row">
-                {/* Div para el lado lateral del perfil */}
-                  <div className="col-2 d-flex flex-column ml-3 shadow-sm p-3 mb-5 bg-white rounded">
-                     {/* Div para la imagen */}
+{/*               
+                <div className="col-12">
+                 <Nav></Nav>
+                </div>
+                  <div className="col-12 d-flex flex-column ml-3 shadow-sm p-3 mb-5 bg-white rounded">
+               
                     <div >
                     <img src={auth.photoURL} alt="..." class="img-thumbnail"/>  
                     </div>  
                       <h5>{auth.displayName}</h5>  
                     <h6>Tel:{auth.phoneNumber}</h6>
                     <h6>Email:{auth.email}</h6>
-                    <button type="button" class="btn btn-primary">Editar perfil</button>
-                    <button type="button" onClick={this.renderAnuncios} class="btn btn-info mt-5">Mis anuncios</button> 
-                    {/* <Link to='/perfil/misAnuncios' classclassName="btn btn-info mt-5" >Mis anuncios</Link> */}
-                    <button type="button" class="btn btn-info mt-5" onClick={this.renderSave}>Anuncios guardados</button>
-                    {/* validar que una vez guardado ya no aparezca el boton guardar */}
-                  </div> 
-                   <div className="col-9">
-                      
-                        {
-                          this.renderCustomerControl()
-                        }
-                     
-                   </div>
+                    <button  type="button" class="btn btn-primary w-25">Editar perfil</button>
+
+                  </div>  */}
 
                 </div>   
                

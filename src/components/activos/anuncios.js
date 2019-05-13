@@ -36,10 +36,10 @@ class Anuncios extends Component {
 
    renderBody=dni=>{
 
-        return <Route path="/anuncios/bienRaiz" children={
+        return <Route exact path="/anuncios/bienRaiz" children={
    
              ({match:isHogar})=>(   
-                 <Route path="/anuncios/auto" children={ 
+                 <Route exact  path="/anuncios/auto" children={ 
                      ({match:isAuto})=>this.renderCustomerControl(isHogar,isAuto,dni)} />) 
           }/>
      

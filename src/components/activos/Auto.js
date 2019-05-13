@@ -141,7 +141,7 @@ class Auto extends Component {
         const {auto}=this.props;
     
         return (
-            <div className="ml-5 ml-sm-5 ml-md-5 ml-lg-5 col-sm-12 col-md-5 col-lg-5 col-xl-3 " >
+            <div className="ml-0 ml-sm-5 ml-md-5 ml-lg-5 col-sm-12 col-md-5 col-lg-5 col-xl-3 " >
 
               <div class={`card ${this.state.card}`}>
                 <div className="d-flex justify-content-between">
@@ -176,14 +176,14 @@ class Auto extends Component {
 
                 {/*  */}
                 {/* <img class="card-img-top" src={ this.state.fotos.urlPhoto? this.state.fotos.urlPhoto[0]:null} alt="Card image cap"/> */}
-                <div class="card-body">
-                    <h5 class="card-title">{auto.titulo}</h5>
-                    <p class="card-text">{auto.departamento}</p>
+                <div class="card-body d-flex flex-column bg-light">
+                    <h5 class="card-title align-self-start">{auto.titulo}</h5>
+                    <p class="card-text align-self-start">{auto.departamento}</p>
                     <div>
                     {/* <a href="#" class="btn btn-primary">Ver mas detalles</a> */}
                     {/*  */}
                 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target={`#${this.state.modal}`}>
+                    <button type="button " class="btn btn-primary" data-toggle="modal" data-target={`#${this.state.modal}`}>
                       Mas detalles
                     </button>
 
@@ -213,9 +213,7 @@ class Auto extends Component {
                              </div>
                           </div>
                           <div class="modal-footer d-flex justify-content-between">
-                            <h6>Anunciante:
-                                <Link  className="tooltip-test" to={`/perfil/${this.props.auto.authorId}`}  title="Ver mas de sus anuncios" >{auto.user}</Link>
-                            </h6>
+                          
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             
                           </div>
@@ -227,10 +225,16 @@ class Auto extends Component {
                     {/* <button type="button" className={this.state.className} onClick={this.guardar}>Guardar</button> */}
                     {/* <button type="button" className={this.state.btn} onClick={this.borrar}>Borrar</button> */}
                     </div>
-                    <div class="card-footer">
-                      <small class="text-muted">publicado hace:{moment(auto.createdAt.toDate()).fromNow() }</small>
+                    <div class="card-footer d-flex">
+      
+                    
+                      <small class="text-muted">publicado:{moment(auto.createdAt.toDate()).fromNow() }</small>
+                      
+                    
                     </div>
-                  
+                    <small className="align-self-start ml-1">Por:
+                                <Link className="tooltip-test" to={`/perfil/${this.props.auto.authorId}`}  title="Ver mas de sus anuncios" >{auto.user}</Link>
+                    </small>
                 </div>
 
                 

@@ -167,7 +167,7 @@ class Coches extends Component {
                    <option value="masaya">Masaya</option>
                    
                   </Field>  
-                  <button type="submit"  class="btn btn-primary mt-5 ml-2">Buscar</button>
+                  <button type="submit"  class="btn btn-primary mt-1 ml-2">Buscar</button>
                 </form>
                 
                 </div>

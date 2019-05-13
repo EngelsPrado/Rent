@@ -1,9 +1,9 @@
 .one{
-    height: 27vh;
+    height: 19vh;
 }
 
 .modal-backdrop {
-    z-index: 1040;
+    z-index: 0;
     position: unset;
-    height:0 ; 
+ 
 }
