@@ -2,15 +2,46 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { getFirestore } from 'redux-firestore';
 import {connect} from 'react-redux'
-import {NavLink} from 'react-router-dom'
+import {NavLink,Link} from 'react-router-dom'
 import SignedInLinks from './../layout/signedInLink'
 import IniciaSesion from './IniciaSesion';
 
 class Header extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+  
+      noti:[]
+    };
+
+    //this.handleChange = this.handleChange.bind(this);
+    //this.handleSubmit = this.handleSubmit.bind(this);
+  }
+   
+   componentDidMount(){
+
+    const db=firebase.firestore();
+
+    db.collection("user").doc(this.props.auth.uid).collection("bandeja").onSnapshot(snap=>{
+      console.log(snap)
+
+      this.setState(prevState => ({
+        noti: [
+           
+               snap
+           ]
+          
+      }))
+
+    })
+
+   }
+
     render() {
 
         const { auth } = this.props;
-
+        const array=this.state.noti
         const link=auth.uid ? <SignedInLinks profile={auth} ></SignedInLinks> : <IniciaSesion></IniciaSesion>
 
         return (
@@ -39,7 +70,27 @@ class Header extends Component {
                      <div>
                        {link}
                      </div>
-
+                
+                      <div className="dropdown align-self-center m-2">
+                          <button className="btn btn-info dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="far fa-paper-plane"></i>
+                          </button>
+                          <div className ="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                           {
+                             array.map(msj=>{
+                              return msj.docs.map(m=>{
+                                console.log(m.data())
+                                
+                                var user=m.data()
+                                return <Link to={`/chat/${user.id}`} ><small>{user.content}</small> </Link>
+                                
+                              })
+            
+                            })
+                           }
+                          </div>
+                      </div>
+                
                     <NavLink  to="/publicar"  className=" btn btn-light text-black p-3 ml-2"> + Publica</NavLink> 
                   </div>
                    

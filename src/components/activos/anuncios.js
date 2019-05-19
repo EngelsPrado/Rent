@@ -49,8 +49,7 @@ class Anuncios extends Component {
 
     render() {
         const {  auth,dni } = this.props;
-      //  var obj=JSON.stringify(anuncios)
-         console.log(dni)
+   
         
         return (
             <div className="container-fluid">

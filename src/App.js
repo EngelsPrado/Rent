@@ -11,6 +11,7 @@ import PerfilLink from './components/user/PerfilLink';
 import MyAnuncios from './components/user/MyAnuncios';
 import Save from './components/user/Save';
 import NotFound from './components/NotFound';
+import Chat from './components/activos/Chat';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
              <Header></Header> 
              <Switch>
                <Route exact path='/' component={Home}/> 
+               <Route  exact path='/chat/:dni' render={props=> <Chat  dni={props.match.params.dni} /> } />
                <Route exact path='/publicar' component={Publicar} />
                <Route exact path='/perfil' component={Perfil}/> 
                <Route  path='/perfil/:dni' render={props=>  <PerfilLink dni={props.match.params.dni}/> }/>

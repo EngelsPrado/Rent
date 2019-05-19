@@ -7,3 +7,10 @@
     position: unset;
  
 }
+
+.chat {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    height: 460px !important;
+    
+}
