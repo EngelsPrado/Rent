@@ -9,3 +9,9 @@ margin: 5px;
 .modal-backdrop{
     z-index: 0;
 }
+
+.chat-box{
+
+  text-decoration: none;
+   
+}

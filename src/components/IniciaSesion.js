@@ -63,7 +63,7 @@ class IniciaSesion extends Component {
       };
     render() {
         const {  auth } = this.props;
-   
+    
         if (auth.uid || this.state.isSignedIn) return <Redirect to='/' /> 
         return (
             <div className="dashboard container mt-3">

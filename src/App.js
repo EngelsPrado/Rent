@@ -12,6 +12,7 @@ import MyAnuncios from './components/user/MyAnuncios';
 import Save from './components/user/Save';
 import NotFound from './components/NotFound';
 import Chat from './components/activos/Chat';
+import Footer from './components/Footer';
 
 class App extends Component {
   render() {
@@ -38,7 +39,7 @@ class App extends Component {
                 <Route exact path='/anuncios/:dni' render={ props=> <Anuncios dni={props.match.params.dni}/>} />
                
             </Switch>
-            
+        {/* <Footer></Footer>     */}
       </div>
       
       </BrowserRouter>

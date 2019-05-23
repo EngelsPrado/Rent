@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 import {NavLink,Link} from 'react-router-dom'
 import SignedInLinks from './../layout/signedInLink'
 import IniciaSesion from './IniciaSesion';
+import './style.css'
+import moment from 'moment'
 
 class Header extends Component {
 
@@ -41,6 +43,7 @@ class Header extends Component {
     render() {
 
         const { auth } = this.props;
+        console.log(auth)
         const array=this.state.noti
         const link=auth.uid ? <SignedInLinks profile={auth} ></SignedInLinks> : <IniciaSesion></IniciaSesion>
 
@@ -67,31 +70,47 @@ class Header extends Component {
                  </a>    
  
                   <div className="d-flex flex-row">
-                     <div>
-                       {link}
-                     </div>
+                     
                 
                       <div className="dropdown align-self-center m-2">
                           <button className="btn btn-info dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i class="far fa-paper-plane"></i>
                           </button>
+
                           <div className ="dropdown-menu" aria-labelledby="dropdownMenuButton">
                            {
                              array.map(msj=>{
                               return msj.docs.map(m=>{
-                                console.log(m.data())
-                                
+                            
                                 var user=m.data()
-                                return <Link to={`/chat/${user.id}`} ><small>{user.content}</small> </Link>
+                                console.log(user)
+                                return(
+                                  <Link class="card "  style={{ textDecoration: 'none',color:'black'}} to={`/chat/${user.id}`}>
+                                    <div class="card-body">
+                                    <img  width='45' className="rounded-circle d-inline"  src={user.photo}></img>
+                                    <h5 class="card-title chat-box d-inline ml-1
+                                    ">{user.name}</h5>
+                                     
+                                      <p class="card-text chat-box"><small>{user.content}</small></p>
+                                      <h6 class="card-subtitle mb-2 text-muted chat-box">{moment(user.createdAt.toDate()).format('LT') }</h6>
+                                    </div>
+                                </Link> 
+
+                                ) 
+                                
+                    
                                 
                               })
             
                             })
                            }
                           </div>
+                          
                       </div>
-                
-                    <NavLink  to="/publicar"  className=" btn btn-light text-black p-3 ml-2"> + Publica</NavLink> 
+                      <div>
+                       {link}
+                     </div>
+                    <NavLink  to="/publicar"  className=" btn btn-light text-black p-3 ml-2 h-50"> + Publica</NavLink> 
                   </div>
                    
                 </nav>

@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import moment from 'moment'
 import { Redirect,Link } from 'react-router-dom'
+import index from './../../config/Alg'
 const MySwal = withReactContent(Swal)
 
 class Auto extends Component {
@@ -26,7 +27,16 @@ class Auto extends Component {
     
     db.collection("urlFotos").doc(this.props.auto.id).get().then(url=>{
       var datos=url.data()
-
+      console.log(datos)
+      index
+         .saveObject(datos)
+         .then(() => {
+           console.log('Contacts imported into Algolia');
+         })
+         .catch(error => {
+           console.error('Error when importing contact into Algolia', error);
+     
+         }); 
   
      this.setState({
        fotos:datos

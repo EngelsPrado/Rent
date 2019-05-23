@@ -2,6 +2,7 @@ import firebase, { firestore } from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+
   var config = {
     apiKey: "AIzaSyAmtTInkK7m6HFaDYlBD3-4nAyX5i3WQVo",
     authDomain: "rent-me-165ca.firebaseapp.com",
@@ -12,6 +13,8 @@ import 'firebase/auth';
   };
   //firebase.initializeApp(config);
   
+  
+
   firebase.initializeApp(config)
   firebase.firestore().settings({timestampsInSnapshots:true});
   export default firebase 

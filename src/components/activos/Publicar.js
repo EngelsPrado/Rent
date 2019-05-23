@@ -7,6 +7,7 @@ import firebase from 'firebase'
 import {createAnuncio} from './../../store/actions/anuncioAction'
 import {createUrl} from './../../store/actions/fotoAction'
 
+
 const uuidv4 = require('uuid/v4');
 
 //Guardar varias fotos
@@ -26,7 +27,7 @@ class Publicar extends Component {
         
          
          const storageRef = firebase.storage().ref();
-          
+         
          const array=value.photo;
          var uploadTask=[];
         
@@ -38,8 +39,11 @@ class Publicar extends Component {
            uploadTask= [...uploadTask,mountainsRef.put(array[i])]
          
          }
+
+
+         
            this.props.createUrl(uploadTask,id)               
-           this.props.createAnuncio(value,id)   
+          this.props.createAnuncio(value,id)   
           
            
     }
