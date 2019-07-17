@@ -4,16 +4,19 @@ import Categorias from './categorias';
 class Home extends Component {
     render() {
         return (
-            <div className="bg-light container  mt-5">
-                <div class="jumbotron">
-                <h1 class="display-4">Hola,somos Rent!</h1>
-                <p class="lead">Tu web de alquiler</p>
+            <div className=" container-fluid  mt-3">
+                <div class="d-flex head h-4">
+            
+               
                 <hr class="my-4"/>
-                <p>Accede a los miles de anuncios segun tu preferencia</p>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Inicia sesion,y publica ya!</a>
+       
+                <a class="btn btn-primary btn-lg align-self-end" href="#" role="button">Publica ya!</a>
+               
                 </div>
 
-                   <Categorias></Categorias>
+                <div className="container-fluid">
+                <Categorias></Categorias>
+                </div>
             </div>
         );
     }

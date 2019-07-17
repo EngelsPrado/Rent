@@ -10,7 +10,7 @@
 
 .chat {
     overflow-y: scroll;
-  
+    background-color: #f2f3f3;    
     -webkit-overflow-scrolling: touch;
     height: 460px !important;
     

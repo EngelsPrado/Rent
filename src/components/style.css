@@ -4,10 +4,23 @@ margin: 5px;
 }
 .publica{
     margin-top: 100px;
+ 
+}
+.nav2{
+background-color: #0c99c1
+ 
+
 }
 
 .modal-backdrop{
     z-index: 0;
+}
+
+.head{
+  height: 90vh;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/rent-me-165ca.appspot.com/o/Fotos%20del%20proyecto%2Fpareja-joven-en-casa-nueva.jpg?alt=media&token=4fe0abf9-b503-4714-bd38-a70dba7cd5fc");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .chat-box{

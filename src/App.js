@@ -13,6 +13,7 @@ import Save from './components/user/Save';
 import NotFound from './components/NotFound';
 import Chat from './components/activos/Chat';
 import Footer from './components/Footer';
+import Test from './components/Test';
 
 class App extends Component {
   render() {
@@ -37,7 +38,7 @@ class App extends Component {
 
             <Switch> 
                 <Route exact path='/anuncios/:dni' render={ props=> <Anuncios dni={props.match.params.dni}/>} />
-               
+                <Route eact path='/test' component={Test} />
             </Switch>
         {/* <Footer></Footer>     */}
       </div>
