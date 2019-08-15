@@ -19,7 +19,7 @@ const SignedInLinks = (props) => {
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <NavLink className="dropdown-item" to='/perfil'>Mi perfil</NavLink>
-          <button onClick={props.signOut} type="button" class="btn btn-secondary">Cerrar Sesión</button>
+          <button onClick={props.signOut} type="button" class="btn btn-secondary">Cerrar Sesiónn</button>
           </div>
       </div>
     </div>
