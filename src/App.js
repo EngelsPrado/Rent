@@ -12,7 +12,7 @@ import MyAnuncios from './components/user/MyAnuncios';
 import Save from './components/user/Save';
 import NotFound from './components/NotFound';
 import Chat from './components/activos/Chat';
-import Footer from './components/Footer';
+//import Footer from './components/Footer';
 import Test from './components/Test';
 
 class App extends Component {

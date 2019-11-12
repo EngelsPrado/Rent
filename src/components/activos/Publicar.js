@@ -19,10 +19,10 @@ class Publicar extends Component {
      array:[]
    }
       
-    handleBack=()=>{ this.props.history.goBack() }
-    handleOnSubmitSuccess = () => {
-      this.props.history.goBack();
-  }
+  //  handleBack=()=>{ this.props.history.goBack() }
+  //  handleOnSubmitSuccess = () => {
+  //    this.props.history.goBack();
+ // }
     handleSubmit=(value)=>{
         
          
