@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
-import { getFirestore } from 'redux-firestore';
-import {connect} from 'react-redux'
+import { firestore } from './../firebase';
+
 import {NavLink,Link} from 'react-router-dom'
 import SignedInLinks from './../layout/signedInLink'
 import IniciaSesion from './IniciaSesion';
@@ -24,13 +23,11 @@ class Header extends Component {
    // this.Hit=this.Hit.bind(this)
   }
    
-   componentDidMount(){
-
-    const db=firebase.firestore();
- 
+  /* componentWillMount(){
 
 
-    db.collection("user").doc(this.props.auth.uid).collection("bandeja").onSnapshot(snap=>{
+
+     firestore.collection("user").doc(this.props.auth.uid).collection("bandeja").onSnapshot(snap=>{
       console.log(snap)
 
       this.setState(prevState => ({
@@ -45,14 +42,14 @@ class Header extends Component {
 
    }
 
-  
+   */
 
     render() {
 
-        const { auth } = this.props;
+      //  const { auth } = this.props;
       
-        const array=this.state.noti
-        const link=auth.uid ? <SignedInLinks profile={auth} ></SignedInLinks> : <IniciaSesion></IniciaSesion>
+       // const array=this.state.noti
+      //  const link=auth.uid ? <SignedInLinks profile={auth} ></SignedInLinks> : <IniciaSesion></IniciaSesion>
 
         return (
             <div className="sticky-top nav">
@@ -83,7 +80,7 @@ class Header extends Component {
                           </button>
 
                           <div className ="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                           {
+                           {/* 
                              array.map(msj=>{
                               return msj.docs.map(m=>{
                             
@@ -108,12 +105,13 @@ class Header extends Component {
                               })
             
                             })
+                            */
                            }
                           </div>
                           
                       </div>
                       <div>
-                       {link}
+                       {/* {link} */}
                      </div>
                     <NavLink  to="/publicar"  className=" btn  text-white p-3 ml-2 h-50 "> + Publica</NavLink> 
                   </div>
@@ -130,14 +128,6 @@ class Header extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return{
-     // authError: state.auth.authError,
-      auth: state.firebase.auth
-    }
-  }
-
-
-export default connect(mapStateToProps)(Header);
+export default Header
            
 
