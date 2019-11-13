@@ -28,3 +28,39 @@ background-color: #0c99c1
   text-decoration: none;
    
 }
+
+
+form {
+  width: 450px;
+  margin: auto;
+  background: rgba(10,0,0, 0.4);
+  padding: 10px 20px;
+  box-sizing: border-box;
+  margin-top: 75px;
+  border-radius: 20px;
+}
+
+h2{
+  color: white;
+  text-align: center;
+  margin: 0;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+input{
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 7px;
+  box-sizing: border-box;
+}
+
+button{
+  background: #31384a;
+  color: white;
+  padding: 20px;
+}
+
+#Boton:hover{
+  cursor: pointer;
+}

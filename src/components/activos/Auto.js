@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import firebase from 'firebase'
+
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import moment from 'moment'
 import { Redirect,Link } from 'react-router-dom'
+import { firestore } from '../../firebase';
 
 const MySwal = withReactContent(Swal)
 
@@ -23,9 +23,9 @@ class Auto extends Component {
   {
 
 
-    const db=firebase.firestore()
+   
     
-    db.collection("urlFotos").doc(this.props.auto.id).get().then(url=>{
+     firestore.collection("urlFotos").doc(this.props.auto.id).get().then(url=>{
       var datos=url.data()
       console.log(datos)
      
@@ -37,7 +37,7 @@ class Auto extends Component {
     })
   
     //Poner la opcion de borrar si el anuncio esta guardado
-    db.collection("user").doc(this.props.auth.uid).collection("guardados").doc(this.props.auto.id).get().then(snap=>{
+    firestore.collection("user").doc(this.props.auth.uid).collection("guardados").doc(this.props.auto.id).get().then(snap=>{
   
          
       if(snap.data().estado!==false)
@@ -60,7 +60,7 @@ class Auto extends Component {
       })
     }
     //Validamos que el anuncio que guardamos no aparezca su opcion de guardar otra veeeez
-    db.collection("user").doc(this.props.auth.uid).collection("guardados").where("ID","==",this.props.auto.id).get().then(snap=>{
+    firestore.collection("user").doc(this.props.auth.uid).collection("guardados").where("ID","==",this.props.auto.id).get().then(snap=>{
       const datos=snap.docs[0].data()
        console.log(datos.estado)
       if(datos.estado && datos.estado===true)
@@ -86,11 +86,11 @@ class Auto extends Component {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        const db=firebase.firestore() 
+       
         
          if(this.props.auth.uid !== this.props.auto.authorId)
          {
-          db.collection("user").doc(this.props.auth.uid).collection("guardados").doc(this.props.auto.id).update({
+          firestore.collection("user").doc(this.props.auth.uid).collection("guardados").doc(this.props.auto.id).update({
             estado:false
           }).then(()=>{
             this.setState({
@@ -98,7 +98,7 @@ class Auto extends Component {
             })
           })
          }else{
-          db.collection("anuncios").doc(this.props.auto.id).delete().then(()=> {
+          firestore.collection("anuncios").doc(this.props.auto.id).delete().then(()=> {
             this.setState({
               card:'invisible'
             })
@@ -122,9 +122,9 @@ class Auto extends Component {
     this.setState({
       className:'invisible'
     })
-    const db=firebase.firestore()
    
-    db.collection("user").doc(this.props.auth.uid).collection("guardados").doc(this.props.auto.id).set({
+   
+    firestore.collection("user").doc(this.props.auth.uid).collection("guardados").doc(this.props.auto.id).set({
       ID:this.props.auto.id,
       estado:true,
       createdAt: new Date()
@@ -247,11 +247,7 @@ class Auto extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-  return{
-    //authError: state.auth.authError,
-    auth: state.firebase.auth
-  }
-}
 
-export default connect(mapStateToProps) (Auto); 
+
+
+export default  Auto 

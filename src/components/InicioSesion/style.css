@@ -1,0 +1,99 @@
+.account-box
+{
+    border: 2px solid rgba(153, 153, 153, 0.75);
+    border-radius: 17px;
+    -moz-border-radius: 17px;
+    -webkit-border-radius: 17px;
+    -khtml-border-radius: 17px;
+    -o-border-radius: 17px;
+    box-shadow: 30px solid;
+    z-index: 3;
+    font-size: 13px !important;
+    font-family: "Helvetica Neue" ,Helvetica,Arial,sans-serif;
+    background-color: #ffffff;
+    padding: 20px;
+    width: 428px;
+    max-width: 100%;
+    box-shadow: 0px 0px 13px -2px #127dbf
+}
+
+.col-md-3{
+    max-width: none;
+}
+
+.logo
+{
+    text-align: center;
+    background-position: 0px -4px;
+    position: relative;
+}
+
+.forgotLnk
+{
+    margin-top: 10px;
+    display: block;
+}
+
+.purple-bg
+{
+    background-color: #6E329D;
+    color: #fff;
+}
+.or-box
+{
+    position: relative;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 20px;
+    margin-top:20px;
+}
+.or
+{
+    color: #666666;
+    background-color: #ffffff;
+    position: absolute;
+    text-align: center;
+    top: -8px;
+    width: 40px;
+    left: 90px;
+}
+.account-box .btn:hover
+{
+    color: #fff;
+}
+.btn-facebook
+{
+    background-color: #3F639E;
+    color: #fff;
+    font-weight:bold;
+}
+.btn-google
+{
+    background-color: #454545;
+    color: #fff;
+    font-weight:bold;
+}
+
+.caja-logo{
+    margin: 20px auto 20px auto;
+}
+
+.logo_imagen{
+    display: inline-block;
+    width: 200px;
+}
+
+@media screen and (max-width:400px){
+
+}
+
+.forgotLnk{
+
+    display: flex;
+    justify-content: center;
+}
+
+
+.checkbox{
+    display: flex;
+    justify-content: center;
+}
