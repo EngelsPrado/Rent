@@ -6,7 +6,7 @@
     "algoliasearch": "^3.33.0",
     "connected-react-router": "^6.3.2",
     "create-redux-store": "^1.1.2",
-    "firebase": "^5.8.4",
+    "firebase": "^10.9.0",
     "google-maps-react": "^2.0.2",
     "moment": "^2.24.0",
     "react": "^16.8.2",
